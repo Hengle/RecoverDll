@@ -1,7 +1,0 @@
-D:\opensource\recoverdll\RecoverDll\bin\Debug\RecoverDll.exe.config
-D:\opensource\recoverdll\RecoverDll\bin\Debug\RecoverDll.exe
-D:\opensource\recoverdll\RecoverDll\bin\Debug\RecoverDll.pdb
-D:\opensource\recoverdll\RecoverDll\obj\Debug\RecoverDll.csprojResolveAssemblyReference.cache
-D:\opensource\recoverdll\RecoverDll\obj\Debug\RecoverDll.csproj.CoreCompileInputs.cache
-D:\opensource\recoverdll\RecoverDll\obj\Debug\RecoverDll.exe
-D:\opensource\recoverdll\RecoverDll\obj\Debug\RecoverDll.pdb
