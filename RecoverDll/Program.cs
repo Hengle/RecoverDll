@@ -18,7 +18,7 @@ namespace HackDll
             {
                 c += n & 1;
             }
-            return (int)c;
+            return (int) c;
         }
 
         private static void CheckBuff(byte[] bytes, List<long> posList, int byteCount, long startPos)
@@ -54,7 +54,7 @@ namespace HackDll
         private static void Main()
         {
             string path = Application.StartupPath;
-            Console.WriteLine(path);
+            //Console.WriteLine(path);
             CommonOpenFileDialog commonOpenFileDialog = new CommonOpenFileDialog();
             commonOpenFileDialog.IsFolderPicker = true;
             commonOpenFileDialog.Title = "select directory";
@@ -67,17 +67,21 @@ namespace HackDll
                 DirectoryInfo directory = new DirectoryInfo(commonOpenFileDialog.FileName);
                 FileInfo[] files = directory.GetFiles("*.*");
                 mDirectorPath = commonOpenFileDialog.FileName;
+                if (files.Length > 0)
+                {
+                    Console.WriteLine("recovering....");
+                }
                 foreach (FileInfo fileInfo in files)
                 {
                     FileStream fs = File.OpenRead(fileInfo.FullName);
-                    int totalCount = (int)(fs.Length / bufferSize);
+                    int totalCount = (int) (fs.Length / bufferSize);
                     List<long> posList = new List<long>();
                     for (int i = 0; i < totalCount; i++)
                     {
                         fs.Read(buffer, 0, bufferSize);
                         CheckBuff(buffer, posList, bufferSize, i * bufferSize);
                     }
-                    int left = (int)(fs.Length - bufferSize * totalCount);
+                    int left = (int) (fs.Length - bufferSize * totalCount);
                     if (left > 0)
                     {
                         fs.Read(buffer, 0, left);
@@ -97,6 +101,9 @@ namespace HackDll
                     }
                     br.Dispose();
                     fs.Close();
+                }
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", commonOpenFileDialog.FileName);
                 }
             }
 
@@ -318,7 +325,7 @@ namespace HackDll
                     toFile.Flush();
                     copied += eachReadLength;
                 }
-                int left = (int)(count - copied);
+                int left = (int) (count - copied);
                 fromFile.Read(buffer, 0, left);
                 toFile.Write(buffer, 0, left);
                 toFile.Flush();
